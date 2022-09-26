@@ -1,6 +1,6 @@
 {% extends 'layout/base.html'%}
 
-{% block title %} Examen Parcial Numero 2{% endblock %}
+{% block title %} Examen Parcial Computación en la nube{% endblock %}
 
 {% block content %} 
   <div class="container">
@@ -13,4 +13,8 @@
       <div class="col fs-2">161139</div>
     </div>
   </div>
+  <h2>MODELO DE CLASES ARCHITECT</h1>
+  <img src="{{url_for('static',filename='img/architect.jpeg')}}" alt="imagen de diseño de clases" class="img-fluid img-thumbnail"/>
+  <h2>DIAGRAMA LOGICO MySQL</h1>
+  <img src="{{url_for('static',filename='img/bd_model.png')}}" alt="imagen de diagrama logico" class="img-fluid img-thumbnail"/>
 {% endblock %}
