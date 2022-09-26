@@ -8,6 +8,10 @@
     <div class="container-fluid">
         <div class="row">
           <div class="input-group mb-3 col">
+            {{ form.dni_student_group.label(class="input-group-text") }}
+            {{ form.dni_student_group(class="form-control") }}
+          </div>
+          <div class="input-group mb-3 col">
             {{ form.school_group.label(class="input-group-text") }}
             {{ form.school_group(class="form-control") }}
           </div>

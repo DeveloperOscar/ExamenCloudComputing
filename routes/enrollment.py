@@ -13,6 +13,7 @@ def index():
     form = EnrollmentForm()
     form.school_group.choices = list(map(lambda tupla:tupla[0],School.query.with_entities(School.name)))
     form.course_group.choices = list(map(lambda tupla:tupla[0],Course.query.with_entities(Course.name)))
+    form.dni_student_group.choices = list(map(lambda tupla:tupla[0],Course.query.with_entities(Student.dni)))
     listOfEnrollment = []
     for enrollment in enrollments:
         school = School.query.filter_by(id = enrollment.school_id).first()
@@ -58,9 +59,15 @@ def search():
     form = EnrollmentForm()
     form.school_group.choices = list(map(lambda tupla:tupla[0],School.query.with_entities(School.name)))
     form.course_group.choices = list(map(lambda tupla:tupla[0],Course.query.with_entities(Course.name)))
+    form.dni_student_group.choices = list(map(lambda tupla:tupla[0],Course.query.with_entities(Student.dni)))
+    form.dni_student_group.choices.append("TODOS")
     school_id = School.query.filter_by(name = form.school_group.data).first().id
     course_id = Course.query.filter_by(name = form.course_group.data).first().id
-    enrollments = Enrollment.query.filter_by(school_id = school_id,course_id = course_id).all()
+    if form.dni_student_group.data == 'TODOS':
+        enrollments = Enrollment.query.filter_by(school_id = school_id,course_id = course_id).all()
+    else:
+        student_id = Student.query.filter_by(dni = form.dni_student_group.data).first().id
+        enrollments = Enrollment.query.filter_by(school_id = school_id,course_id = course_id,student_id = student_id).all()
     listOfEnrollment = []
     for enrollment in enrollments:
         school = School.query.filter_by(id = enrollment.school_id).first()
