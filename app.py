@@ -1,6 +1,7 @@
 from flask import Flask
 
 from routes.enrollment import EnrollmentRoute
+from routes.main import MainRoute
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +16,7 @@ def create_app():
     app.register_blueprint(SchoolRoute)
     app.register_blueprint(CourseRoute)
     app.register_blueprint(EnrollmentRoute)
+    app.register_blueprint(MainRoute)
     from utils.db import db
     db.init_app(app)
     return app
