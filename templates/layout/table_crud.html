@@ -1,0 +1,35 @@
+{% extends 'layout/base.html'%}
+{% macro create_table_crud(create='student.create',name_columns=['column1','column2'],edit='student.edit',delete='student.delete',entities=[]) %}
+<a type="button" class="btn btn-primary mt-2" href="{{ url_for(create) }}"> INSERTAR </a>
+<div class="table-responsive">
+  <table class="table table-striped mt-2 table-hover table-bordered border-success">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        {% for name_column in name_columns %}
+          <th scope="col">{{ name_column.upper() }}</th>
+        {% endfor %}
+        <th scope="col">ACCION</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entity in entities %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        {{ caller(entity) }}
+        <td >
+          <div class="container-fluid m-auto">
+            <div class="row"> 
+              <a type="button" class="col btn btn-primary col" href="{{ url_for(edit,id = entity.id) }} ">EDITAR</a>
+              <form method="POST" action="{{ url_for(delete,id = entity.id) }}" class="col">
+                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+              </form>
+            </div>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endmacro %}

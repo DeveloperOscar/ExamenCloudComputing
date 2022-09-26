@@ -1,0 +1,57 @@
+{% extends 'layout/table_crud.html'%}
+
+{% block title %} Lista de Matriculados {% endblock %}
+
+{% block content %}
+  <form method="post" action="{{url_for('enrollment.search')}}">
+    {{ form.hidden_tag() }}
+    <div class="container-fluid">
+        <div class="row">
+          <div class="input-group mb-3 col">
+            {{ form.school_group.label(class="input-group-text") }}
+            {{ form.school_group(class="form-control") }}
+          </div>
+          <div class="input-group mb-3 col">
+            {{ form.course_group.label(class="input-group-text") }}
+            {{ form.course_group(class="form-control") }}
+          </div>
+          <div class="input-group mb-3 col">
+            <input type="submit" class="btn btn-primary mt-2 col" value="BUSCAR">
+          </div>
+        </div>
+    </div> 
+  </form>
+  <a type="button" class="col btn btn-primary col" href="{{ url_for('enrollment.index') }} ">MOSTRAR TODOS</a>
+  <div class="table-responsive">
+    <table class="table table-striped mt-2 table-hover table-bordered border-success">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ESTUDIANTE</th>
+          <th scope="col">ESCUELA</th>
+          <th scope="col">CURSO</th>
+          <th scope="col">ACCION</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for enrollment in enrollments %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ enrollment.student | upper}}</td>
+          <td>{{ enrollment.school | upper }}</td>
+          <td>{{ enrollment.course | upper }}</td>
+          <td >
+            <div class="container-fluid m-auto">
+              <div class="row"> 
+                <form method="POST" action="{{ url_for('enrollment.delete',id = enrollment.id) }}" class="col">
+                  <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                </form>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

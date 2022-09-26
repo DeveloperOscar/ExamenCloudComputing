@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% block title %}Editar Escuela{% endblock %}
+
+{% block content %}
+<form method="post" action="{{url_for('school.update',id = id)}}">
+  {{ form.hidden_tag() }}
+  {{ form.name.label(class="form-label") }}
+  {{ form.name(class="form-control") }}
+  <br />
+  {{ form.codigo.label(class="form-label") }}
+  {{ form.codigo(class="form-control") }}
+  <br />
+  {{ form.duration.label(class="form-label") }}
+  {{ form.duration(class="form-control") }}
+  <br />
+  <input type="submit" class="btn btn-primary mt-2" value="Enviar">
+</form>
+{% endblock %}

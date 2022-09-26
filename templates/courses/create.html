@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% block title %}Agregar Curso{% endblock %}
+
+{% block content %}
+<form method="post" action="{{url_for('course.insert')}}">
+  {{ form.hidden_tag() }}
+  {{ form.name.label(class="form-label") }}
+  {{ form.name(class="form-control") }}
+  <br />
+  {{ form.codigo.label(class="form-label") }}
+  {{ form.codigo(class="form-control") }}
+  <br />
+  {{ form.credits.label(class="form-label") }}
+  {{ form.credits(class="form-control") }}
+  <br />
+  <input type="submit" class="btn btn-primary mt-2" value="Enviar">
+</form>
+{% endblock %}

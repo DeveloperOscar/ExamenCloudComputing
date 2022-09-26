@@ -1,0 +1,25 @@
+{% extends 'layout/table_crud.html'%}
+
+{% block title %} Lista de Estudiantes {% endblock %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <span aria-hidden="true">&#9889;</span>
+    </div>
+{% endfor %}
+{% call(entity) create_table_crud(
+  entities=students, 
+  name_columns=['FECHA_NACIMIENTO','DNI','NOMBRES','SEXO'],
+  create='student.create',
+  edit='student.edit',
+  delete='student.delete') %}
+
+    <td>{{ entity.birth_date }}</td>
+    <td>{{ entity.dni }}</td>
+    <td>{{ entity.name +" "+ entity.surname | upper}}</td>
+    <td>{{ entity.sexo | upper}}</td>
+  {% endcall %}
+{% endblock %}

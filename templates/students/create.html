@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+{% block title %}Formulario Estudiante{% endblock %}
+
+{% block content %}
+<form method="post" action="{{url_for('student.insert')}}">
+  {{ form.hidden_tag() }}
+  {{ form.name.label(class="form-label") }}
+  {{ form.name(class="form-control") }}
+  <br />
+  {{ form.surname.label(class="form-label") }}
+  {{ form.surname(class="form-control") }}
+  <br />
+  {{ form.dni.label(class="form-label") }}
+  {{ form.dni(class="form-control") }}
+  <br />
+  {{ form.sexo.label(class="form-label") }}
+  {{ form.sexo(class="form-control") }}
+  <br />
+  {{ form.birth_date.label(class="form-label") }}
+  {{ form.birth_date(class="form-control") }}
+  <br />
+  <input type="submit" class="btn btn-primary mt-2" value="Enviar">
+</form>
+{% endblock %}

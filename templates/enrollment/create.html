@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% block title %}Proceso de  Matricula {% endblock %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <span aria-hidden="true">&#9889;</span>
+    </div>
+{% endfor %}
+<form method="post" action="{{url_for('enrollment.insert')}}">
+  {{ form.hidden_tag() }}
+  <div class="container-fluid">
+      <div class="row">
+        <div class="input-group mb-3 col">
+          {{ form.dni_student_group.label(class="input-group-text") }}
+          {{ form.dni_student_group(class="form-control") }}
+        </div>
+        <div class="input-group mb-3 col">
+          {{ form.school_group.label(class="input-group-text") }}
+          {{ form.school_group(class="form-control") }}
+        </div>
+        <div class="input-group mb-3 col">
+          {{ form.course_group.label(class="input-group-text") }}
+          {{ form.course_group(class="form-control") }}
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" class="btn btn-primary mt-2 col" value="Registrar">
+      </div>
+  </div> 
+</form>
+{% endblock %}
+

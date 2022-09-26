@@ -1,0 +1,24 @@
+{% extends 'layout/table_crud.html'%}
+
+{% block title %} Lista de Cursos {% endblock %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <span aria-hidden="true">&#9889;</span>
+    </div>
+{% endfor %}
+{% call(entity) create_table_crud(
+  entities=courses, 
+  name_columns=['CODIGO','CURSO','CREDITOS'],
+  create='course.create',
+  edit='course.edit',
+  delete='course.delete') %}
+
+    <td>{{ entity.codigo }}</td>
+    <td>{{ entity.name | upper}}</td>
+    <td>{{ entity.credits }} Creditos</td>
+  {% endcall %}
+{% endblock %}

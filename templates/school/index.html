@@ -1,0 +1,24 @@
+{% extends 'layout/table_crud.html'%}
+
+{% block title %} Lista de Escuelas {% endblock %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <span aria-hidden="true">&#9889;</span>
+    </div>
+{% endfor %}
+{% call(entity) create_table_crud(
+  entities=schools, 
+  name_columns=['CODIGO','ESCUELA','DURACIÓN'],
+  create='school.create',
+  edit='school.edit',
+  delete='school.delete') %}
+
+    <td>{{ entity.codigo | upper}}</td>
+    <td>{{ entity.name | upper}}</td>
+    <td>{{ entity.duration }} Años</td>
+  {% endcall %}
+{% endblock %}
