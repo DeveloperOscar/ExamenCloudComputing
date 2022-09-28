@@ -5,8 +5,8 @@ from routes.main import MainRoute
 
 def create_app():
     app = Flask(__name__)
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root@127.0.0.1/ExamenDB"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://oscar:Mysql123#@54.89.251.68/ExamenDB"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root@127.0.0.1/ExamenDB"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://oscar:Mysql123#@54.89.251.68/ExamenDB"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config['SECRET_KEY'] = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
     from routes.student import StudentRoute

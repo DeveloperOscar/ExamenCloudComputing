@@ -21,9 +21,6 @@
           <div class="container-fluid m-auto">
             <div class="row"> 
               <a type="button" class="col btn btn-primary col" href="{{ url_for(edit,id = entity.id) }} ">EDITAR</a>
-              <form method="POST" action="{{ url_for(delete,id = entity.id) }}" class="col">
-                <button type="submit" class="btn btn-danger">ELIMINAR</button>
-              </form>
             </div>
           </div>
         </td>
